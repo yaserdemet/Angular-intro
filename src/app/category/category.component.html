@@ -1,1 +1,18 @@
-<p>category works!</p>
+<div class="ms-3">
+    <h3 class="mt-5">
+        {{title}}
+    </h3>
+
+    <div class="list-group">
+        <a href="" class="list-group-item active">All Categories</a>
+
+    </div>
+    
+    <div class="list-group" *ngFor="let item of categories">
+            <a class="list-group-item" href="">
+                {{item.name }}
+                <!--* | builtin pipe -->
+            </a>
+    </div>
+    
+</div>

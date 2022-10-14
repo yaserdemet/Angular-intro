@@ -1,17 +1,35 @@
 <div class="row gap-3 flex flex-wrap mt-5">
-    <h3 *ngIf="products.length > 0; else No Product">{{title}}</h3>
+  <h3 *ngIf="products.length > 0; else No Product">{{title}}</h3>
+  <div class="mb-3">
+
+    <input  [(ngModel)] = "filterText" type="text" class="form-control" id="exampleInputEmail1" >
+    <div *ngIf="products.length > 0; else mine" id="emailHelp" class="form-text">You have searched {{filterText}}</div>
+    <ng-template #mine>
+<div>
+  there is no product
+</div>
+    </ng-template>
+  </div>
     <ng-template #No Product>
             <div class="alert alert-warning w-100">
                 There is no product in this section
             </div>
     </ng-template>
+
+
     <!--? *ngIf conditional rendering olusturur. -->
-    <div *ngFor="let product of products" class="card" style="width: 18rem;">
-        <img src={{product.img}} class="card-img-top" alt="laptop">
+    <!--* ng-template *ngIf in else kısmı için yazılır. -->
+
+
+
+    <div *ngFor="let product of products | productFilter : filterText" class="card" style="width: 18rem;">
+        <img [src] = "product.img" class="card-img-top" alt="..." style="height : 200px;">
+        <!--! binding [src] = "product.img" -->
         <div class="card-body">
           <h5 class="card-title">{{product.name}}</h5>
           <p class="card-text">{{product.description}}</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <a href="#" class="btn btn-primary fixed-bottom-0">{{product.price | currency:"USD"}}</a>
+          <!--* | currency, uppercase lowercase built in pipe lar -->
         </div>
       </div>
   

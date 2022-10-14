@@ -6,3 +6,18 @@ export class Product{
   description: string;
   img: string;
 }
+
+// normalde bu şekilde calısmıyor initilizar bekliyor bunu engellemek için ts.config sayfasından 
+
+// {
+//     ...
+//     "compilerOptions": {
+//           ....
+//           "noImplicitReturns": false,
+//           ....
+//           "strictPropertyInitialization": false
+//     },
+//     "angularCompilerOptions": {
+//        ......
+//     }  
+// }
