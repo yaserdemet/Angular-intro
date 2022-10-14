@@ -1,25 +1,30 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-
+import {HttpClientModule} from "@angular/common/http";
+import { GaugeModule } from 'angular-gauge';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ProductComponent } from './product/product.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { CategoryComponent } from './category/category.component';
-import { ProductFilterPipe } from './product/product-filter.pipe';
+import {MatTabsModule} from "@angular/material/tabs";
+import {MatIconModule} from "@angular/material/icon";
+import {MatFormFieldModule} from "@angular/material/form-field"
+
+
+import { ToastService, AngularToastifyModule } from 'angular-toastify';
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductComponent,
-    NavbarComponent,
-    CategoryComponent,
-    ProductFilterPipe,
+ 
   
   ],
-  imports: [BrowserModule, AppRoutingModule,   FormsModule],
-  providers: [],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule,   FormsModule,    AngularToastifyModule, 
+  ToastrModule.forRoot() , BrowserAnimationsModule,],
+  providers: [ToastService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

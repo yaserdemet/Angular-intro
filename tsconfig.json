@@ -19,13 +19,15 @@
     "importHelpers": true,
     "target": "es2020",
     "module": "es2020",
-    "strictNullChecks" : false,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
     "lib": ["es2020", "dom"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true
+    "strictTemplates": true,
+    
   }
 }
