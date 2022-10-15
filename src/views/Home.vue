@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="feature-card">
-      <router-link to="/movie/">
+      <router-link to="/movie/tt0409591">
         <img
           src="https://m.media-amazon.com/images/M/MV5BZmQ5NGFiNWEtMmMyMC00MDdiLTg4YjktOGY5Yzc2MDUxMTE1XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg"
           alt="Naruto Poster"
@@ -17,13 +17,65 @@
         </div>
       </router-link>
     </div>
+
+    <form @submit.prevent="SearchMovies()" class="search-box">
+      <input
+        type="text"
+        placeholder="What are you looking for?"
+        v-model="search"
+      />
+      <input type="submit" value="Search" />
+    </form>
+
+    <div class="movies-list">
+      <div class="movie" v-for="movie in movies" :key="movie.imdbID">
+        <router-link :to="'/movie/' + movie.imdbID" class="movie-link">
+          <div class="product-image">
+            <img   :src="movie.Poster" alt="Movie Poster" />
+            <div class="type">{{ movie.Type }}</div>
+          </div>
+          <div class="detail">
+            <p class="year">{{ movie.Year }}</p>
+            <h3>{{ movie.Title }}</h3>
+          </div>
+        </router-link>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
+import { ref } from "vue";
+// import env from "@/env.js";
+import env from "@/env.js";
 
-export default {};
+import apiKey from "@/env.js";
+export default {
+  setup() {
+    const search = ref("");
+    const movies = ref([]);
+    const SearchMovies = () => {
+      if (search.value != "") {
+
+        fetch(`http://www.omdbapi.com/?apikey=${apiKey}&s=${search.value}`)
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+          });
+
+        // fetch(`http://www.omdbapi.com/?apikey=${env.apiKey}&s=${search.value}`)
+        // .then((res) => res.json()).then((data) => console.log(data)).catch((err) => console.log(err))
+      }
+
+      
+    };
+    return {
+      search,
+      movies,
+      SearchMovies,
+    };
+  },
+};
 </script>
 
 <style lang="scss">
