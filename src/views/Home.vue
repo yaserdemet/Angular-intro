@@ -29,6 +29,7 @@
 
     <div class="movies-list">
       <div class="movie" v-for="movie in movies" :key="movie.imdbID">
+        
         <router-link :to="'/movie/' + movie.imdbID" class="movie-link">
           <div class="product-image">
             <img   :src="movie.Poster" alt="Movie Poster" />
@@ -60,7 +61,9 @@ export default {
         fetch(`http://www.omdbapi.com/?apikey=${apiKey}&s=${search.value}`)
           .then((response) => response.json())
           .then((data) => {
-            console.log(data);
+            movies.value = data.Search;
+            search.value = ""
+            // console.log(data);
           });
 
         // fetch(`http://www.omdbapi.com/?apikey=${env.apiKey}&s=${search.value}`)
